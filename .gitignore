@@ -1,0 +1,17 @@
+# Dataset 
+train/
+my_train/
+my_val/
+train_sources.csv
+*.zip
+
+# Bobot baseline hanya pembanding, tidak perlu di-commit
+baseline/model.pth
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+
+README_TEMPLATE.md
