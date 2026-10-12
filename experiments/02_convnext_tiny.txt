@@ -1,0 +1,26 @@
+device=cpu | train=2340 | val=413
+epoch  1  loss=1.0323  (536s)  val_macroF1=0.9050  val_acc=0.9056  *
+epoch  2  loss=0.8193  (495s)  val_macroF1=0.9301  val_acc=0.9395  *
+epoch  3  loss=0.7548  (532s)  val_macroF1=0.9431  val_acc=0.9467  *
+epoch  4  loss=0.6968  (518s)  val_macroF1=0.9398  val_acc=0.9443
+epoch  5  loss=0.7047  (505s)  val_macroF1=0.9512  val_acc=0.9564  *
+epoch  6  loss=0.6430  (501s)  val_macroF1=0.9556  val_acc=0.9588  *
+epoch  7  loss=0.6598  (515s)  val_macroF1=0.9628  val_acc=0.9661  *
+(dihentikan manual saat epoch 8; model.pth = epoch 7)
+
+== python evaluate.py --submission ./submission --data ./my_val
+device=cpu  gambar=413
+
+Macro-F1 : 0.9628
+Akurasi  : 0.9661
+  F1 botol_plastik   0.9673
+  F1 gelas_plastik   0.9620
+  F1 kertas_kardus   0.9333
+  F1 saset_kemasan   0.9709
+  F1 styrofoam       0.9804
+Confusion matrix (baris = label asli, kolom = prediksi):
+  botol_plastik   [74, 2, 0, 2, 0]
+  gelas_plastik   [0, 76, 1, 0, 1]
+  kertas_kardus   [0, 2, 49, 2, 2]
+  saset_kemasan   [1, 0, 0, 100, 0]
+  styrofoam       [0, 0, 0, 1, 100]
