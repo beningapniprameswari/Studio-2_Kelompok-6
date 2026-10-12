@@ -1,14 +1,7 @@
-"""Training Kelompok 06: fine-tuning backbone timm (lihat submission/model.py).
+"""Training kelompok 06 (fine-tuning ConvNeXt-Tiny).
 
-    # eksperimen: latih di 85% data, pilih epoch terbaik berdasarkan Macro-F1 di my_val/
-    python train.py --data /path/ke/train --epochs 15
-
-    # final: latih di SELURUH data train (tanpa validasi), simpan bobot epoch terakhir
-    python train.py --data /path/ke/train --epochs 15 --full
-
-Hasil: submission/model.pth (state_dict fp16 agar < 100 MB) + folder my_val/
-untuk diuji dengan:
-    python evaluate.py --submission ./submission --data ./my_val
+    python train.py --data ./train --epochs 15          # split 85/15, simpan epoch terbaik
+    python train.py --data ./train --epochs 15 --full   # semua data, untuk final
 """
 import argparse
 import math
@@ -28,7 +21,7 @@ from submission.model import IMG_SIZE, MEAN, STD, NUM_CLASSES, get_model, get_tr
 
 
 def make_local_split(src, dst, frac, seed):
-    """Salin `frac` gambar per kelas ke my_val/ dan sisanya ke my_train/ (sekali saja)."""
+    """Split per kelas ke my_train/ dan my_val/, cuma dibuat sekali."""
     dst_tr, dst_va = Path(dst) / "my_train", Path(dst) / "my_val"
     if dst_va.exists():
         return dst_tr, dst_va
@@ -45,7 +38,7 @@ def make_local_split(src, dst, frac, seed):
 
 
 def save_fp16(model, path):
-    """Simpan state_dict dalam fp16: ukuran file setengahnya, load_state_dict tetap jalan ke model fp32."""
+    # fp16 biar file < 100 MB (batas GitHub)
     sd = {k: v.half() if v.is_floating_point() else v for k, v in model.state_dict().items()}
     torch.save(sd, path)
 

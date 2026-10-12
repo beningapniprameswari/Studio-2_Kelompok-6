@@ -10,10 +10,8 @@ Hasil: baseline/model.pth + folder my_val/ (split validasi lokal 15%)
        yang bisa langsung diuji dengan:
     python evaluate.py --submission ./baseline --data ./my_val
 
-Catatan Kelompok 06: arsitektur baseline dipindah ke baseline/model.py dan bobot
-disimpan ke baseline/model.pth agar tidak menimpa submission utama (ConvNeXt).
-Split my_val/ memakai make_local_split() dari train.py agar isinya identik
-siapa pun yang dijalankan lebih dulu.
+Kelompok 06: model & bobot baseline disimpan di baseline/ (bukan submission/),
+split my_val/ pakai make_local_split() dari train.py.
 """
 import argparse
 

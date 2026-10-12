@@ -1,7 +1,5 @@
-"""Baseline pembanding: ResNet-18 dengan head 5 kelas (salinan submission/model.py asli dari starter kit).
+"""ResNet-18 dari starter kit, buat pembanding.
 
-Dipisah dari submission/ agar train_baseline.py tidak menimpa model utama.
-Uji dengan:
     python evaluate.py --submission ./baseline --data ./my_val
 """
 import torch.nn as nn

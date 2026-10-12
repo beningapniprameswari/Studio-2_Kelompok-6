@@ -1,17 +1,12 @@
-"""Submission Kelompok 06: ConvNeXt-Tiny (timm) dengan head 5 kelas.
+"""Model kelompok 06: ConvNeXt-Tiny (timm), output 5 kelas.
 
-Aturan kontrak:
-  - get_model() hanya MEMBANGUN arsitektur (default pretrained=False -> tidak mengunduh apa pun,
-    evaluate.py yang memuat model.pth).
-  - get_transform() harus SAMA dengan transform validasi saat melatih (train.py meng-import file ini).
-  - Output model: logits [batch, 5], urutan kelas:
-      0 botol_plastik, 1 gelas_plastik, 2 kertas_kardus, 3 saset_kemasan, 4 styrofoam
+Kelas: 0 botol_plastik, 1 gelas_plastik, 2 kertas_kardus, 3 saset_kemasan, 4 styrofoam
 """
 import timm
 from torchvision import transforms
 
 NUM_CLASSES = 5
-# Ganti backbone cukup di sini; train.py otomatis mengikuti.
+# train.py juga pakai konstanta di file ini
 MODEL_NAME = "convnext_tiny.fb_in22k_ft_in1k"
 IMG_SIZE = 256
 MEAN = (0.485, 0.456, 0.406)
