@@ -1,9 +1,12 @@
-# Dataset — DILARANG diunggah ulang ke repo publik
+# Dataset 
 train/
 my_train/
 my_val/
 train_sources.csv
 *.zip
+
+# Bobot baseline hanya pembanding, tidak perlu di-commit
+baseline/model.pth
 
 # Python / Jupyter
 __pycache__/

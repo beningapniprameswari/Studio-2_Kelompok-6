@@ -6,9 +6,12 @@ Titik awal saja — kelompok diharapkan melakukan eksperimen sendiri
     python train_baseline.py --data ./train --epochs 8
     python train_baseline.py --data ./train --epochs 8 --scratch   # tanpa bobot pretrained
 
-Hasil: submission/model.pth + folder my_val/ (split validasi lokal 15%)
+Hasil: baseline/model.pth + folder my_val/ (split validasi lokal 15%)
        yang bisa langsung diuji dengan:
-    python evaluate.py --submission ./submission --data ./my_val
+    python evaluate.py --submission ./baseline --data ./my_val
+
+Catatan Kelompok 06: arsitektur baseline dipindah ke baseline/model.py dan bobot
+disimpan ke baseline/model.pth agar tidak menimpa submission utama (ConvNeXt).
 """
 import argparse
 import random
@@ -20,7 +23,9 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, models, transforms
 
-from submission.model import get_model, get_transform
+from baseline.model import get_model, get_transform
+
+OUT = "baseline/model.pth"
 
 
 def make_local_split(src, dst, frac, seed):
@@ -98,8 +103,8 @@ def main():
         print(f"epoch {ep:2d}  val_acc={acc:.4f}")
         if acc > best:
             best = acc
-            torch.save(model.state_dict(), "submission/model.pth")
-    print(f"best val_acc={best:.4f} -> submission/model.pth")
+            torch.save(model.state_dict(), OUT)
+    print(f"best val_acc={best:.4f} -> {OUT}")
 
 
 if __name__ == "__main__":
