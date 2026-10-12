@@ -113,7 +113,7 @@ def main():
     total = a.epochs * len(tr_dl)
     warm = int(a.warmup * len(tr_dl))
     sched = torch.optim.lr_scheduler.LambdaLR(
-        opt, lambda s: (s + 1) / warm if s < warm else 0.5 * (1 + math.cos(math.pi * (s - warm) / (total - warm))))
+        opt, lambda s: (s + 1) / warm if s < warm else 0.5 * (1 + math.cos(math.pi * (s - warm) / max(1, total - warm))))
     scaler = torch.amp.GradScaler(enabled=device == "cuda")
 
     best, best_m = -1.0, None
