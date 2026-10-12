@@ -6,8 +6,8 @@ Deep Learning (IF25-40401) · Teknik Informatika ITERA · Semester Ganjil 2026/2
 
 | No | Nama Lengkap | NIM | Kontribusi utama |
 |----|--------------|-----|------------------|
-| 1  | Raditya Alrasyid Nugroho | 123140125 | |
-| 2  | Bening Apni Prameswari   | 123140089 | |
+| 1  | Bening Apni Prameswari | 123140089 | Training & eksperimen model |
+| 2  | Raditya Alrasyid Nugroho   | 123140125 | Setup awal repo, starter kit & pipeline submission |
 
 ## Ringkasan Pendekatan
 
@@ -38,7 +38,13 @@ python train.py --data ./train --epochs 15          # membuat my_val/ dan submis
 python evaluate.py --submission ./submission --data ./my_val
 ```
 
-Training dijalankan di Kaggle (GPU T4) melalui [kaggle_train.ipynb](kaggle_train.ipynb).
+Training dijalankan di Google Colab (GPU T4) melalui [colab_train.ipynb](colab_train.ipynb); alternatifnya Kaggle melalui [kaggle_train.ipynb](kaggle_train.ipynb). Log tiap eksperimen disimpan di [experiments/](experiments/).
+
+Untuk melatih versi final di seluruh data train (tanpa split validasi):
+
+```bash
+python train.py --data ./train --epochs 15 --full
+```
 
 ## Struktur Repositori
 
@@ -52,5 +58,6 @@ train.py            # skrip training kelompok
 train_baseline.py   # baseline ResNet-18 dari starter kit (menyimpan ke baseline/)
 baseline/model.py   # arsitektur baseline ResNet-18, terpisah dari submission utama
 experiments/        # log hasil training & evaluasi tiap eksperimen
+colab_train.ipynb   # notebook untuk menjalankan training di Google Colab
 kaggle_train.ipynb  # notebook untuk menjalankan training di Kaggle
 ```
