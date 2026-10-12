@@ -12,11 +12,10 @@ Hasil: baseline/model.pth + folder my_val/ (split validasi lokal 15%)
 
 Catatan Kelompok 06: arsitektur baseline dipindah ke baseline/model.py dan bobot
 disimpan ke baseline/model.pth agar tidak menimpa submission utama (ConvNeXt).
+Split my_val/ memakai make_local_split() dari train.py agar isinya identik
+siapa pun yang dijalankan lebih dulu.
 """
 import argparse
-import random
-import shutil
-from pathlib import Path
 
 import torch
 import torch.nn as nn
@@ -24,27 +23,9 @@ from torch.utils.data import DataLoader
 from torchvision import datasets, models, transforms
 
 from baseline.model import get_model, get_transform
+from train import make_local_split
 
 OUT = "baseline/model.pth"
-
-
-def make_local_split(src, dst, frac, seed):
-    """Salin 15% gambar per kelas dari train ke my_val/ (sekali saja), sisanya ke my_train/."""
-    dst_tr, dst_va = Path(dst) / "my_train", Path(dst) / "my_val"
-    if dst_va.exists():
-        return dst_tr, dst_va
-    rng = random.Random(seed)
-    for cls_dir in sorted(Path(src).iterdir()):
-        if not cls_dir.is_dir():
-            continue
-        files = sorted(cls_dir.glob("*.jpg"))
-        rng.shuffle(files)
-        n_va = int(len(files) * frac)
-        for i, f in enumerate(files):
-            out = (dst_va if i < n_va else dst_tr) / cls_dir.name
-            out.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(f, out / f.name)
-    return dst_tr, dst_va
 
 
 def main():
