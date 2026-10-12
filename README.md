@@ -49,6 +49,8 @@ submission/
   requirements.txt  # timm
 evaluate.py         # salinan skrip evaluasi resmi
 train.py            # skrip training kelompok
-train_baseline.py   # baseline ResNet-18 dari starter kit
+train_baseline.py   # baseline ResNet-18 dari starter kit (menyimpan ke baseline/)
+baseline/model.py   # arsitektur baseline ResNet-18, terpisah dari submission utama
+experiments/        # log hasil training & evaluasi tiap eksperimen
 kaggle_train.ipynb  # notebook untuk menjalankan training di Kaggle
 ```
