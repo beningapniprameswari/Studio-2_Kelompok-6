@@ -1,6 +1,6 @@
 """Training kelompok 06 (fine-tuning ConvNeXt-Tiny).
 
-    python train.py --data ./train --epochs 15          # split 85/15, simpan epoch terbaik
+    python train.py --data ./train --epochs 15          
     python train.py --data ./train --epochs 15 --full   # semua data, untuk final
 """
 import argparse
