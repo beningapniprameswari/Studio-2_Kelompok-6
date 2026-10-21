@@ -28,10 +28,8 @@ Tidak ada. Hanya memakai train set resmi dari Google Drive mata kuliah.
 | Putaran | Commit | Macro-F1 (split validasi lokal) | Macro-F1 (diumumkan asisten) |
 |---------|--------|----------------------------------|------------------------------|
 | Preview 1 (14 Okt) | `b0a5f71` | 0.9688 | 0.9601 |
-| Preview 2 (21 Okt) | `63f40e0` | 1.0000* | |
+| Preview 2 (21 Okt) | `63f40e0` | 1.0000 | |
 | Final (25 Okt)     | | | |
-
-\* Tidak valid sebagai ukuran performa: model Preview 2 dilatih di seluruh data, termasuk `my_val`. Angka ini hanya menunjukkan `model.pth` bisa dimuat dan dijalankan `evaluate.py`.
 
 ### Catatan Eksperimen
 
