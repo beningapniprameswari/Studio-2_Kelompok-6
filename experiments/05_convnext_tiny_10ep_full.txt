@@ -1,0 +1,15 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+device=cuda | train=2753 | val=0
+/content/Studio-2_Kelompok-6/train.py:126: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  sched.step()
+epoch  1  loss=1.0751  (33s)
+epoch  2  loss=0.7775  (31s)
+epoch  3  loss=0.7392  (30s)
+epoch  4  loss=0.6594  (30s)
+epoch  5  loss=0.6793  (31s)
+epoch  6  loss=0.6483  (31s)
+epoch  7  loss=0.6496  (31s)
+epoch  8  loss=0.6490  (30s)
+epoch  9  loss=0.6022  (30s)
+epoch 10  loss=0.5936  (31s)
+model epoch terakhir disimpan -> submission/model.pth
