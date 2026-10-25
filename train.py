@@ -1,7 +1,7 @@
-"""Training kelompok 06 (fine-tuning ConvNeXt-Tiny).
+"""Fine-tuning ConvNeXt-Tiny untuk klasifikasi sampah 5 kelas (Kelompok 06).
 
-    python train.py --data ./train --epochs 15          
-    python train.py --data ./train --epochs 15 --full   # semua data, untuk final
+    python train.py --data ./train --epochs 10          # split 85/15, simpan epoch terbaik
+    python train.py --data ./train --epochs 10 --full   # seluruh data, simpan epoch terakhir
 """
 import argparse
 import math
@@ -21,7 +21,7 @@ from submission.model import IMG_SIZE, MEAN, STD, NUM_CLASSES, get_model, get_tr
 
 
 def make_local_split(src, dst, frac, seed):
-    """Split per kelas ke my_train/ dan my_val/, cuma dibuat sekali."""
+    """Bagi data per kelas ke my_train/ dan my_val/. Kalau my_val/ sudah ada, tidak dibuat ulang."""
     dst_tr, dst_va = Path(dst) / "my_train", Path(dst) / "my_val"
     if dst_va.exists():
         return dst_tr, dst_va
@@ -38,7 +38,7 @@ def make_local_split(src, dst, frac, seed):
 
 
 def save_fp16(model, path):
-    # fp16 biar file < 100 MB (batas GitHub)
+    # disimpan dalam fp16 agar ukuran file di bawah batas 100 MB GitHub
     sd = {k: v.half() if v.is_floating_point() else v for k, v in model.state_dict().items()}
     torch.save(sd, path)
 
@@ -57,7 +57,7 @@ def evaluate_split(model, dl, device):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", required=True, help="folder train/ dari dataset")
-    ap.add_argument("--epochs", type=int, default=15)
+    ap.add_argument("--epochs", type=int, default=10)
     ap.add_argument("--lr", type=float, default=2e-4)
     ap.add_argument("--weight-decay", type=float, default=0.05)
     ap.add_argument("--batch-size", type=int, default=32)

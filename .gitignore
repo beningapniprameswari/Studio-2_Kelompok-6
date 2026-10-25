@@ -5,9 +5,6 @@ my_val/
 train_sources.csv
 *.zip
 
-# Bobot baseline hanya pembanding, tidak perlu di-commit
-baseline/model.pth
-
 # Python / Jupyter
 __pycache__/
 *.pyc

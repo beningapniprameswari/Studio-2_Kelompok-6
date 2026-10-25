@@ -1,12 +1,12 @@
-"""Model kelompok 06: ConvNeXt-Tiny (timm), output 5 kelas.
+"""Model submission Kelompok 06: ConvNeXt-Tiny dari timm dengan output 5 kelas.
 
-Kelas: 0 botol_plastik, 1 gelas_plastik, 2 kertas_kardus, 3 saset_kemasan, 4 styrofoam
+Urutan kelas: 0 botol_plastik, 1 gelas_plastik, 2 kertas_kardus, 3 saset_kemasan, 4 styrofoam
 """
 import timm
 from torchvision import transforms
 
 NUM_CLASSES = 5
-# train.py juga pakai konstanta di file ini
+# konstanta di bawah juga dipakai oleh train.py
 MODEL_NAME = "convnext_tiny.fb_in22k_ft_in1k"
 IMG_SIZE = 256
 MEAN = (0.485, 0.456, 0.406)
